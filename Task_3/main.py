@@ -26,9 +26,16 @@ app.include_router(tasks.router, prefix="/api/tasks", tags=["tasks"])
 
 
 @app.exception_handler(StarletteHTTPException)
-async def genral_http_exception_handeler(exception: StarletteHTTPException):
-    return await http_exception_handler(exception)
+async def general_http_exception_handler(
+    request,
+    exception: StarletteHTTPException
+):
+    return await http_exception_handler(request, exception)
+
 
 @app.exception_handler(RequestValidationError)
-async def validation_exception_handler(exception: RequestValidationError):
-    return await request_validation_exception_handler(exception)
+async def validation_exception_handler(
+    request,
+    exception: RequestValidationError
+):
+    return await request_validation_exception_handler(request, exception)
